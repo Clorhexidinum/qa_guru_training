@@ -1,7 +1,7 @@
 import allure
 from selene.support.shared import browser
 
-from qa_guru_mobile_1 import utils
+from asos import utils
 
 
 def screenshot(*, name='screenshot'):
@@ -12,20 +12,33 @@ def screenshot(*, name='screenshot'):
     )
 
 
-def screen_xml_dump(*, name=None):
+def logs(*, name='browser_logs'):
+    log = "".join(f'{text}\n' for text in browser.driver.get_log(log_type='browser'))
+    allure.attach(log, name=name, attachment_type=allure.attachment_type.TEXT)
+
+
+def xml_dump(*, name='page xml dump'):
     allure.attach(
         browser.driver.page_source,
-        name=name or 'page xml dump',
+        name=name,
         attachment_type=allure.attachment_type.XML,
     )
 
 
-def screen_html_dump(*, name=None):
+def html_dump(*, name='page html dump'):
     allure.attach(
         browser.driver.page_source,
-        name=name or 'page html dump',
+        name=name,
         attachment_type=allure.attachment_type.HTML,
     )
+
+
+def video():
+    video_url = "https://selenoid.autotests.cloud/video/" + browser.driver.session_id + ".mp4"
+    html = "<html><body><video width='100%' height='100%' controls autoplay><source src='" \
+           + video_url \
+           + "' type='video/mp4'></video></body></html>"
+    allure.attach(html, 'video_' + browser.driver.session_id, attachment_type=allure.attachment_type.HTML)
 
 
 def video_from_browserstack(session_id, *, name='video recording'):
