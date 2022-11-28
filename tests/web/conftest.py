@@ -23,7 +23,18 @@ from asos.utils.allure import attach
 def pytest_addoption(parser):
     parser.addoption(
         '--browser_version',
-        default='100.0'
+        default='100.0',
+
+    )
+    parser.addoption(
+        '--browser_name',
+        default='chrome',
+
+    )
+    parser.addoption(
+        '--window_size',
+        default='1920x1080',
+
     )
 
 
@@ -34,11 +45,13 @@ def load_env():
 
 @pytest.fixture(scope='function')
 def setup_browser(request):
+    browser_name = request.config.getoption('--browser_name')
     browser_version = request.config.getoption('--browser_version')
-    browser_version = browser_version
+    window_size = str(request.config.getoption('--window_size')).replace('x', ', ')
+
     options = Options()
     selenoid_capabilities = {
-        "browserName": "chrome",
+        "browserName": browser_name,
         "browserVersion": browser_version,
         "pageLoadStrategy": 'eager',
         "selenoid:options": {
@@ -52,12 +65,13 @@ def setup_browser(request):
     password = os.getenv('PASSWORD')
 
     driver = webdriver.Remote(
-        command_executor=f"https://{login}:{password}@selenoid.autotests.cloud/wd/hub",
+        # command_executor=f"https://{login}:{password}@selenoid.autotests.cloud/wd/hub",
+        command_executor=f"https://user1:1234@selenoid.autotests.cloud/wd/hub",
         options=options
     )
+
     browser.config.driver = driver
-    browser.config.window_width = 1920
-    browser.config.window_height = 1080
+    driver.set_window_size(window_size)
     browser.config.timeout = 20.0
 
     yield browser
