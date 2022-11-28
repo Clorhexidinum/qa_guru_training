@@ -3,7 +3,6 @@ import pytest
 from selene.support.shared import browser
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-from selene import Browser, Config
 from dotenv import load_dotenv
 from asos.utils.allure import attach
 
@@ -55,8 +54,8 @@ def setup_browser(request):
     password = os.getenv('PASSWORD')
 
     driver = webdriver.Remote(
-        # command_executor=f"https://{login}:{password}@selenoid.autotests.cloud/wd/hub",
-        command_executor="https://user1:1234@selenoid.autotests.cloud/wd/hub",
+        command_executor=f"https://{login}:{password}@selenoid.autotests.cloud/wd/hub",
+        # command_executor="https://user1:1234@selenoid.autotests.cloud/wd/hub",
         options=options
     )
     browser.config.driver = driver
