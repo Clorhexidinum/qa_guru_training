@@ -33,7 +33,7 @@ def html_dump(*, name='page html dump'):
     )
 
 
-def video():
+def video(browser):
     video_url = "https://selenoid.autotests.cloud/video/" + browser.driver.session_id + ".mp4"
     html = "<html><body><video width='100%' height='100%' controls autoplay><source src='" \
            + video_url \
