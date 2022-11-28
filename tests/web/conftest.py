@@ -47,13 +47,14 @@ def load_env():
 def setup_browser(request):
     browser_name = request.config.getoption('--browser_name')
     browser_version = request.config.getoption('--browser_version')
-    window_size = str(request.config.getoption('--window_size')).replace('x', ', ')
+    window_size = str(request.config.getoption('--window_size')).split('x')
 
     options = Options()
     selenoid_capabilities = {
         "browserName": browser_name,
         "browserVersion": browser_version,
         "pageLoadStrategy": 'eager',
+        "se"
         "selenoid:options": {
             "enableVNC": True,
             "enableVideo": True
@@ -65,13 +66,13 @@ def setup_browser(request):
     password = os.getenv('PASSWORD')
 
     driver = webdriver.Remote(
-        # command_executor=f"https://{login}:{password}@selenoid.autotests.cloud/wd/hub",
-        command_executor=f"https://user1:1234@selenoid.autotests.cloud/wd/hub",
+        command_executor=f"https://{login}:{password}@selenoid.autotests.cloud/wd/hub",
+        # command_executor=f"https://user1:1234@selenoid.autotests.cloud/wd/hub",
         options=options
     )
 
     browser.config.driver = driver
-    driver.set_window_size(window_size)
+    browser.set_window_size(window_size[0], window_size[1])
     browser.config.timeout = 20.0
 
     yield browser
