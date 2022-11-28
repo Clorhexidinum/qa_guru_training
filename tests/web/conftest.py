@@ -19,8 +19,6 @@ from asos.utils.allure import attach
 #     browser.config.timeout = float(os.getenv('selene.timeout', '15'))
 #     browser.open('')
 
-DEFAULT_BROWSER_VERSION = "100.0"
-
 
 def pytest_addoption(parser):
     parser.addoption(
@@ -37,7 +35,7 @@ def load_env():
 @pytest.fixture(scope='function')
 def setup_browser(request):
     browser_version = request.config.getoption('--browser_version')
-    browser_version = browser_version if browser_version != "" else DEFAULT_BROWSER_VERSION
+    browser_version = browser_version
     options = Options()
     selenoid_capabilities = {
         "browserName": "chrome",
@@ -55,7 +53,6 @@ def setup_browser(request):
 
     driver = webdriver.Remote(
         command_executor=f"https://{login}:{password}@selenoid.autotests.cloud/wd/hub",
-        # command_executor="https://user1:1234@selenoid.autotests.cloud/wd/hub",
         options=options
     )
     browser.config.driver = driver
