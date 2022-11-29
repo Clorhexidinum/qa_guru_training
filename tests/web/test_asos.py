@@ -8,7 +8,6 @@ from selenium import webdriver
 from asos.model.pages.catalog import Catalog
 from asos.model.pages.header import Main
 from asos.model.pages.product import Product
-from asos.utils.allure import attach
 
 main_page = Main()
 catalog = Catalog()
@@ -26,7 +25,6 @@ product = Product()
 @pytest.mark.parametrize('product_type', ['boots'])
 def test_open_catalog(setup_browser, gender, product_type):
     with allure.step(f'Opening the {product_type} page'):
-        browser.open('https://asos.com')
         main_page \
             .check_gender(gender) \
             .select_category('shoes') \

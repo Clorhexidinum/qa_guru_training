@@ -72,8 +72,10 @@ def setup_browser(request):
     )
 
     browser.config.driver = driver
+    browser.config.base_url = 'https://asos.com'
     driver.set_window_size(window_size[0], window_size[1])
     browser.config.timeout = 20.0
+    browser.open('')
 
     yield browser
 
