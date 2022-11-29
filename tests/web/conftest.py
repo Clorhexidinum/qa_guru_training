@@ -59,7 +59,7 @@ def setup_browser(request):
 
     browser.config.driver = driver
     browser.config.base_url = 'https://asos.com'
-    browser.config.timeout = 60.0
+    browser.config.timeout = 6.0
     browser.open('')
 
     yield browser
