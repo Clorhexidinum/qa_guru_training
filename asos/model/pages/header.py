@@ -7,7 +7,7 @@ class Main:
         pass
 
     def given_opened(self):
-        browser.open('/')
+        browser.open('')
         return self
 
     def check_gender(self, value: str):

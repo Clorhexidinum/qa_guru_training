@@ -23,7 +23,7 @@ product = Product()
 @pytest.mark.parametrize('product_type', ['boots', 'trainers'])
 def test_open_catalog(setup_browser, gender, product_type):
     with allure.step(f'Opening the {product_type} page'):
-        main_page \
+        main_page.given_opened() \
             .check_gender(gender) \
             .select_category('shoes') \
             .select_subcategory(product_type)
