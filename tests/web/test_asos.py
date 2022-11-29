@@ -14,26 +14,23 @@ catalog = Catalog()
 product = Product()
 
 
-@allure.feature('Navigation')
-@allure.suite('Catalog page')
-@allure.tag('ui', 'nav', 'positive')
-@allure.label("owner", "Murat Kubekov")
-@allure.title('Open catalog page')
+# @allure.feature('Navigation')
+# @allure.suite('Catalog page')
+# @allure.tag('ui', 'nav', 'positive')
+# @allure.label("owner", "Murat Kubekov")
+# @allure.title('Open catalog page')
 # @pytest.mark.parametrize('gender', ['men', 'women'])
 # @pytest.mark.parametrize('product_type', ['boots', 'trainers'])
-@pytest.mark.parametrize('gender', ['men'])
-@pytest.mark.parametrize('product_type', ['boots'])
-def test_open_catalog(setup_browser, gender, product_type):
-    with allure.step(f'Opening the {product_type} page'):
-        main_page \
-            .check_gender(gender) \
-            .select_category('shoes') \
-            .select_subcategory(product_type)
-
-    with allure.step('Check the title and the availability of goods'):
-        catalog.title().should(have.text(f"{gender.capitalize()}'s {product_type.capitalize()}"))
-        catalog.product_cards().should(have.size_greater_than(0))
-
+# def test_open_catalog(setup_browser, gender, product_type):
+#     with allure.step(f'Opening the {product_type} page'):
+#         main_page \
+#             .check_gender(gender) \
+#             .select_category('shoes') \
+#             .select_subcategory(product_type)
+#
+#     with allure.step('Check the title and the availability of goods'):
+#         catalog.title().should(have.text(f"{gender.capitalize()}'s {product_type.capitalize()}"))
+#         catalog.product_cards().should(have.size_greater_than(0))
 
 
 # @allure.feature('Filter')
@@ -53,24 +50,24 @@ def test_open_catalog(setup_browser, gender, product_type):
 #         catalog \
 #             .select_brand(brand) \
 #             .product_cards().should(have.size_greater_than(0))
-#
-#
-# @allure.feature('Search')
-# @allure.suite('Main page')
-# @allure.tag('ui', 'search', 'positive')
-# @allure.label("owner", "Murat Kubekov")
-# @allure.title('Search product product on main page')
+
+
+@allure.feature('Search')
+@allure.suite('Main page')
+@allure.tag('ui', 'search', 'positive')
+@allure.label("owner", "Murat Kubekov")
+@allure.title('Search product product on main page')
 # @pytest.mark.parametrize("value", ['shirts', 'shorts', 'socks'])
-# def test_search_product(value):
-#     with allure.step(f'Search product {value}'):
-#         main_page.search(value)
-#
-#     with allure.step('Check the title and the availability of goods'):
-#         catalog\
-#             .search_banner().should(have.text(value.capitalize()))\
-#             .product_cards().should(have.size_greater_than(0))
-#
-#
+@pytest.mark.parametrize("value", ['shirts'])
+def test_search_product(value):
+    with allure.step(f'Search product {value}'):
+        main_page.search(value)
+
+    with allure.step('Check the title and the availability of goods'):
+        catalog \
+            .search_banner().should(have.text(value.capitalize())) \
+            .product_cards().should(have.size_greater_than(0))
+
 # @allure.feature('Save product')
 # @allure.suite('Catalog page')
 # @allure.tag('ui', 'save', 'positive')

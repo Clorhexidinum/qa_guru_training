@@ -4,7 +4,7 @@ def abs_path_from_project(relative_path: str):
 
     return (
         Path(asos.__file__)
-        .parent.parent.joinpath(relative_path)
+        .parent.joinpath(relative_path)
         .absolute()
         .__str__()
     )
