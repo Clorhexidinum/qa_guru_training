@@ -99,8 +99,8 @@ favotite = favorite_page.FavoritePage()
 @allure.tag('ui', 'nav', 'positive')
 @allure.label("owner", "Murat Kubekov")
 @allure.title('Открытие страницы каталога')
-@pytest.mark.parametrize('category', ['недвижимость', 'услуги', 'личные вещи'])
-def test_open_catalog(category):
+# @pytest.mark.parametrize('category', ['недвижимость', 'услуги', 'личные вещи'])
+def test_open_catalog():
     with allure.step(f'Открыть страницу'):
         header.select_category('НЕДВИЖИМОСТЬ')
 
@@ -113,7 +113,7 @@ def test_open_catalog(category):
 @allure.tag('ui', 'nav', 'positive')
 @allure.label("owner", "Murat Kubekov")
 @allure.title('Открытие страницы каталога c выбранным городом')
-@pytest.mark.parametrize('category', ['недвижимость', 'услуги', 'личные вещи'])
+# @pytest.mark.parametrize('category', ['недвижимость', 'услуги', 'личные вещи'])
 def test_open_catalog_with_select_sity():
     with allure.step(f'Открыть страницу'):
         header.select_category('НЕДВИЖИМОСТЬ').select_region('Москва')
