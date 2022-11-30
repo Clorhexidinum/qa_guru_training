@@ -5,9 +5,9 @@ from selene.support.shared import browser
 from selenium.webdriver.chrome.options import Options
 from selenium import webdriver
 
-from asos.model.pages.catalog import Catalog
-from asos.model.pages.header import Main
-from asos.model.pages.product import Product
+from avito.model.pages.asos_catalog import Catalog
+from avito.model.pages.asos_header import Main
+from avito.model.pages.asos_product import Product
 
 main_page = Main()
 catalog = Catalog()

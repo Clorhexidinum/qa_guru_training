@@ -1,7 +1,7 @@
 import pydantic
 from appium.options.android import UiAutomator2Options
 from typing import Literal, Optional
-from asos import utils
+from avito import utils
 
 EnvContext = Literal['browserstack', 'apium', 'selenoid']
 

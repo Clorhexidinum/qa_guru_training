@@ -5,7 +5,7 @@ from selene import Browser
 from selene.core.entity import Element, Collection
 import re
 
-from asos.utils.python import monkey
+from avito.utils.python import monkey
 
 
 def is_word_with_dashes_underscores_or_numbers(selector):

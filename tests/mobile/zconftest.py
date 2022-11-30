@@ -6,8 +6,8 @@ import pytest
 
 @pytest.fixture(scope='session', autouse=True)
 def patch_selene():
-    import asos.utils.selene.patch_selector_strategy  # noqa
-    import asos.utils.selene.patch_element_mobile_commands  # noqa
+    import avito.utils.selene.patch_selector_strategy  # noqa
+    import avito.utils.selene.patch_element_mobile_commands  # noqa
 
 
 # @pytest.fixture(scope='function', autouse=True)

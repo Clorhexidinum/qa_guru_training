@@ -1,7 +1,7 @@
 import allure
 from selene.support.shared import browser
 
-from asos import utils
+from avito import utils
 
 
 def screenshot(*, name='screenshot'):
