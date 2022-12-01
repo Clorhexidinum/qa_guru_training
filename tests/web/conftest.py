@@ -41,8 +41,8 @@ def setup_browser(request):
         # "browserVersion": '100.0',
         "pageLoadStrategy": 'eager',
         "selenoid:options": {
-            "screenResolution": f"{window_size}x24",
-            # "screenResolution": f"1280x1024x24",
+            # "screenResolution": f"{window_size}x24",
+            "screenResolution": f"1280x1024x24",
             "enableVNC": True,
             "enableVideo": True
         }
@@ -52,8 +52,8 @@ def setup_browser(request):
     password = os.getenv('PASSWORD')
 
     driver = webdriver.Remote(
-        command_executor=f"https://{login}:{password}@selenoid.autotests.cloud/wd/hub",
-        # command_executor=f"https://user1:1234@selenoid.autotests.cloud/wd/hub",
+        # command_executor=f"https://{login}:{password}@selenoid.autotests.cloud/wd/hub",
+        command_executor=f"https://user1:1234@selenoid.autotests.cloud/wd/hub",
         options=options
     )
 
